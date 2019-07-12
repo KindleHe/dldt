@@ -187,7 +187,8 @@ int getNumberOfCPUCores() {
     static Collection collection(&cpuInfo);
     unsigned numberOfProcessors = collection.getNumberOfProcessors();
     unsigned totalNumberOfCpuCores = collection.getTotalNumberOfCpuCores();
-
+    if (totalNumberOfCpuCores == 0)
+        totalNumberOfCpuCores = numberOfProcessors;
     cpu_set_t usedCoreSet, currentCoreSet, currentCpuSet;
     CPU_ZERO(&currentCpuSet);
     CPU_ZERO(&usedCoreSet);
